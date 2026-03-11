@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!-- Defines the document type and HTML version -->
+
+<html lang="en">
+<!-- Root element of the webpage, language set to English -->
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Character encoding for proper text display -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Makes the website responsive on mobile devices -->
+
+    <title>Training Sport City</title>
+    <!-- Title displayed on browser tab -->
+
+    <link rel="stylesheet" href="style.css">
+    <!-- External CSS file for styling the webpage -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css">
+    <!-- Boxicons library for using icons like menu, close etc -->
+</head>
+
+<body>
+
+    <!-- ================= HEADER SECTION ================= -->
+    <!-- Contains logo, navigation menu and signup buttons -->
+    <header class="header" id="header">
+        <div class="container">
+
+            <!-- Website logo -->
+            <a href="#" class="logo-link"><span>Sport</span> City</a>
+
+            <!-- Navigation menu links -->
+            <nav class="navigation" id="navigation">
+                <a href="index.html" class="link">Home</a>
+                <a href="myTeam.html" class="link">MyTeam</a>
+                <a href="news.html" class="link">News</a>
+                <a href="community.html" class="link">Community</a>
+                <a href="contact.html" class="link">Contact Us</a>
+                <a href="price.html" class="link">Price</a>
+
+                <!-- Close icon for mobile menu -->
+                <span class="icon" id="close"><i class='bx bx-x'></i></span>
+
+            </nav>
+
+            <!-- Buttons and menu icon -->
+            <div class="controls">
+
+                <!-- Promotional button -->
+                <button class="btn-promo">1 Free Month</button>
+
+                <!-- Signup button -->
+                <button class="btn-signup">Sign up</button>
+
+                <!-- Mobile menu icon -->
+                <span class="icon" id="menu"><i class='bx bx-menu'></i></span>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- ================= SIGNUP MODAL ================= -->
+    <!-- Popup form for creating a new user account -->
+    <div class="signup-modal" id="signupModal">
+        <div class="modal-content">
+
+            <!-- Close button for modal -->
+            <span class="close-modal" id="closeModal">&times;</span>
+
+            <h2>Create Account</h2>
+
+            <!-- Signup form -->
+            <form>
+
+                <!-- User name input -->
+                <input type="text" placeholder="Full Name" required>
+
+                <!-- Email input -->
+                <input type="email" placeholder="Email Address" required>
+
+                <!-- Password input -->
+                <input type="password" placeholder="Password" required>
+
+                <!-- Signup button -->
+                <button type="submit" class="btn-signup">Sign Up</button>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Spacing before main content -->
+    <br><br><br><br><br><br>
+
+    <!-- ================= PAGE NAVIGATION TABS ================= -->
+    <!-- Switch between Build Team and Leaderboard -->
+    <nav>
+        <div class="nav-tabs">
+
+            <!-- Active tab -->
+            <button class="active">Build Team</button>
+
+            <!-- Button to open leaderboard -->
+            <button onclick="toggleLeaderboard()">Leaderboard</button>
+
+        </div>
+    </nav>
+
+    <!-- ================= MAIN CONTENT SECTION ================= -->
+    <div class="container1">
+
+        <!-- Transfer Market Section -->
+        <!-- Displays list of available players -->
+        <section class="market-section">
+
+            <h3>Transfer Market</h3>
+
+            <!-- Player table -->
+            <table id="player-table">
+
+                <!-- Table headings -->
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Pos</th>
+                        <th>Rating</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <!-- Table body where players will be added dynamically using JavaScript -->
+                <tbody id="market-body">
+                </tbody>
+
+            </table>
+        </section>
+
+        <!-- ================= SIDEBAR SECTION ================= -->
+        <!-- Displays budget and selected players -->
+        <aside class="sidebar1">
+
+            <!-- Budget card showing remaining money -->
+            <div class="budget-card">
+                <div>Remaining Budget</div>
+
+                <!-- Budget value updated dynamically -->
+                <div class="budget-amount">₹<span id="budget">350</span></div>
+            </div>
+
+            <!-- Selected team players -->
+            <h3>Your Squad (<span id="count">0</span>/11)</h3>
+
+            <!-- List of players added to squad -->
+            <ul class="roster-list" id="roster-list">
+            </ul>
+
+            <!-- Button to simulate team performance -->
+            <button class="btn-sim" id="sim-button" disabled onclick="simulateScore()">
+                Simulate Performance
+            </button>
+
+        </aside>
+    </div>
+
+    <!-- ================= LEADERBOARD MODAL ================= -->
+    <!-- Displays global rankings -->
+    <div id="leaderboard-overlay">
+
+        <div class="modal">
+
+            <h2>Global Rankings</h2>
+
+            <!-- Leaderboard data will be inserted dynamically -->
+            <div id="leaderboard-content"></div>
+
+            <br>
+
+            <!-- Close leaderboard button -->
+            <button class="btn-add" onclick="toggleLeaderboard()">Close</button>
+
+        </div>
+    </div>
+<!-- Team Full Popup -->
+<div id="team-popup" class="team-popup">
+  <div class="team-popup-content">
+    <h2>Your Squad is Complete ⚽</h2>
+    
+    <p><b>Players Selected:</b></p>
+    <ul id="popup-player-list"></ul>
+
+    <p id="popup-score"></p>
+
+    <button onclick="closeTeamPopup()" class="btn-add">Close</button>
+  </div>
+</div>
+    <!-- ================= FOOTER SECTION ================= -->
+    <footer>
+
+        <!-- Social media title -->
+        <div class="social-title">Follow SportCity</div>
+
+        <!-- Social media links -->
+        <div class="social-container">
+
+            <div class="social-box">
+                <i class="fab fa-instagram"></i>
+                Instagram <br>
+                <span>@SportCity</span>
+            </div>
+
+            <div class="social-box">
+                <i class="fab fa-facebook"></i>
+                Facebook <br>
+                <span>@SportCity.de</span>
+            </div>
+
+            <div class="social-box">
+                <i class="fab fa-twitter"></i>
+                Twitter <br>
+                <span>@SportCity</span>
+            </div>
+
+            <div class="social-box">
+                <i class="fab fa-youtube"></i>
+                Youtube <br>
+                <span>@SportCity</span>
+            </div>
+
+            <div class="social-box">
+                <i class="fab fa-tiktok"></i>
+                TikTok <br>
+                <span>@SportCity</span>
+            </div>
+
+            <div class="social-box">
+                <i class="fas fa-microphone"></i>
+                AudioBoom <br>
+                <span>@SportCity</span>
+            </div>
+
+        </div>
+
+        <!-- Footer main section -->
+        <div class="footer-main">
+
+            <!-- Website logo in footer -->
+            <div class="footer-column">
+                <div class="footer-logo">⚽ SportCity</div>
+            </div>
+
+            <!-- Quick links section -->
+            <div class="footer-column">
+                <h3>QUICK LINKS</h3>
+                <ul>
+                    <li><a href="#">All matches</a></li>
+                    <li><a href="#">All teams</a></li>
+                    <li><a href="#">All competitions</a></li>
+                    <li><a href="#">Betting UK</a></li>
+                    <li><a href="#">Betting US</a></li>
+                    <li><a href="#">Betting India</a></li>
+                    <li><a href="#">Betting Canada</a></li>
+                    <li><a href="#">Betting South Africa</a></li>
+                </ul>
+            </div>
+
+            <!-- About company -->
+            <div class="footer-column">
+                <h3>ABOUT US</h3>
+                <ul>
+                    <li><a href="#">Company</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+
+            <!-- Partnership section -->
+            <div class="footer-column">
+                <h3>PARTNER WITH US</h3>
+                <ul>
+                    <li><a href="#">Sales</a></li>
+                    <li><a href="#">CLFP</a></li>
+                    <li><a href="#">Publisher</a></li>
+                    <li><a href="#">Brand Solutions</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal information -->
+            <div class="footer-column">
+                <h3>LEGAL</h3>
+                <ul>
+                    <li><a href="#">Imprint</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms and Conditions</a></li>
+                    <li><a href="#">EU DSA Information</a></li>
+                    <li><a href="#">Licenses</a></li>
+                    <li><a href="#">OFC White Paper</a></li>
+                    <li><a href="#">Privacy Settings</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- ================= JAVASCRIPT FILE ================= -->
+    <!-- External JS file that controls dynamic functions like leaderboard, player selection etc -->
+    <script src="script.js">
+
+    </script>
+
+</body>
+
+</html>
